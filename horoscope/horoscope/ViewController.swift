@@ -29,6 +29,7 @@ class ViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return signos.count
     }
@@ -40,8 +41,15 @@ class ViewController: UITableViewController {
         return celula
     }
     
-    
-    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        let alertController = UIAlertController(title: "Sobre seu signo", message: significadoSignos [ indexPath.row ], preferredStyle: .alert)
+        let acaoConfirmar = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alertController.addAction(acaoConfirmar)
+        
+        present(alertController, animated: true, completion: nil)
+    }
     
     func setSignos(){
         signos.append("Áries")
